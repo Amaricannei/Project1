@@ -148,3 +148,4 @@ var main = function (input) {
     return `<b>${gamemode} <br>${myOutputValue} <br> Game Played: ${totalgamePlayed} *Wins: ${winS} *Tie: ${tie} *Loss: ${losseS}<br> Press 'r' for Actual SPS game and 'p' for Prank mode`;
   }
 };
+// Thanks

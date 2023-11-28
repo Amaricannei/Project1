@@ -47,7 +47,7 @@ var main = function (input) {
     gamemode = "Real Game";
     return "YalamBBBa!! " + PlayerName;
   } else if (gamemode == "Real Game") {
-    var userInput = input.toLowerCase();
+    var userInput = input.toLowerCase().trim();
     var computer = random();
 
     if (userInput == "r") {

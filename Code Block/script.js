@@ -8,15 +8,15 @@ function randomPic() {
 var calc = Math.floor(Math.random()*50)+1;
 return calc;
 }
-
+console.log(randomPic())
 var myOutputValue = "";
 
 var main = function(input) {
 
-  Userinput = input.toLowerCase().trim();
+  var Userinput = input.toLowerCase().trim();
   var computer = randomPic();
 
-  if (beginning == "Hi! Name Please; ") {
+  if (beginning == "Hi! Name Please: ") {
     UserName = Userinput;
     quiz = "start";
     return `${UserName}, your guessing from 1 to 50 time starts now`;
@@ -38,18 +38,17 @@ var main = function(input) {
     if ((Userinput >=1 && Userinput <=50) &&  Userinput == Computer || Userinput == computer*2) {
       score++;
       return `${UserName} it hard to get it correct, you did it!`;
-    } else {
-      return "Your input is incorrect only between 1 to 50"
-    }
+    } 
+  } return "Your input is incorrect only between 1 to 50";
     
-  }if (quiz == "double") {
+  
+  
+  if (quiz == "double") {
     if (Userinput == computer) {
       score++;
       score++;
       return `${UserName} It's more tough to match compensated double`;
-    } else {
-      return "Your input is incorrect only between 1 to 50"
-    }
+    }  
+  } return "Your input is incorrect only between 1 to 50";
   }
 
-}

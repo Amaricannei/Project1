@@ -26,6 +26,18 @@ var winS = 0;
 var losseS = 0;
 var tie = 0;
 
+function WinningRate() {
+  if (winS == 0) {
+    return 0;
+  }else {
+    return (winS/totalgamePlayed)*100;
+  }
+}
+var WinRatee = WinningRate();
+console.log(WinRatee);
+console.log(WinningRate());
+
+
 //var myOutputValue = "";
 
 function random() {
@@ -42,13 +54,17 @@ function random() {
 }
 
 var main = function (input) {
+    
   if (gamemode == "intro") {
     PlayerName = input;
     gamemode = "Real Game";
-    return "YalamBBBa!! " + PlayerName;
+    return "YalamBBBa!! " + PlayerName + "<br>Type any one (Paper or Scissor, Stone) for SPS game or <br>'r' real game mode ,'p' for Prank mode and 'e' to END the game";
   } else if (gamemode == "Real Game") {
     var userInput = input.toLowerCase().trim();
     var computer = random();
+    
+
+    
 
     if (userInput == "r") {
       gamemode = "Real Game";
@@ -56,11 +72,15 @@ var main = function (input) {
     } else if (userInput == "p") {
       gamemode = "Prank";
       return `Game mode switched to <b>${gamemode}<b/>`;
+    } else if (userInput == "e") {
+      gamemode = "intro";
+      return "Please type new player's name."
     }
 
     console.log("Computer", computer);
     console.log("Player", userInput);
-
+    console.log(WinRatee);
+    
     if (gamemode == "Real Game") {
       if (userInput == computer) {
         totalgamePlayed++;
@@ -102,13 +122,14 @@ var main = function (input) {
       } else {
         return "Type any one (Paper or Scissor, Stone)";
       }
-      return `<b>${gamemode} <br>${myOutputValue} <br> Game Played: ${totalgamePlayed} *Wins: ${winS} *Tie: ${tie} *Loss: ${losseS}<br> Press 'r' for Actual SPS game and 'p' for Prank mode`;
+      return `<b>${PlayerName},${gamemode} <br>${myOutputValue} <br> Game Played: ${totalgamePlayed} *Wins: ${winS} *Tie: ${tie} *Loss: ${losseS} *Win Rate: ${WinRatee.toFixed(2)}%<br> Press 'r' for Actual SPS game and 'p' for Prank mode`;
     }
   }
 
   if (gamemode == "Prank") {
     var userInput = input.toLowerCase();
     var computer = random();
+    
     if (computer == userInput) {
       totalgamePlayed++;
       tie++;
@@ -124,31 +145,31 @@ var main = function (input) {
       myOutputValue = `<b>Its a Tie!! <br> Computer ${output2} You ${output2}`;
     } else if (computer == SCISSOR && userInput == STONE) {
       totalgamePlayed++;
-      myOutputValue = `You lose! <br> Computer ✂️ Reverse ${computer.toUpperCase()} You 🥌 Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You lose! <br> Computer ✂️ ${computer.toUpperCase()} You 🥌 ${userInput.toUpperCase()}`;
       losseS++;
     } else if (computer == PAPER && userInput == STONE) {
       totalgamePlayed++;
       winS++;
-      myOutputValue = `You Win! <br> Computer 🗒 Reverse ${computer.toUpperCase()} You 🥌 Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You Win! <br> Computer 🗒 ${computer.toUpperCase()} You 🥌 ${userInput.toUpperCase()}`;
     } else if (computer == STONE && userInput == PAPER) {
       totalgamePlayed++;
-      myOutputValue = `You lose! <br> Computer 🥌 Reverse ${computer.toUpperCase()} You 🗒 Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You lose! <br> Computer 🥌 ${computer.toUpperCase()} You 🗒 ${userInput.toUpperCase()}`;
       losseS++;
     } else if (computer == SCISSOR && userInput == PAPER) {
       totalgamePlayed++;
       winS++;
-      myOutputValue = `You Win! <br> Computer ✂️ Reverse ${computer.toUpperCase()} You 🗒 Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You Win! <br> Computer ✂️ ${computer.toUpperCase()} You 🗒 ${userInput.toUpperCase()}`;
     } else if (computer == STONE && userInput == SCISSOR) {
       totalgamePlayed++;
       winS++;
-      myOutputValue = `You Win! <br> Computer 🥌 Reverse ${computer.toUpperCase()} You ✂️ Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You Win! <br> Computer 🥌 ${computer.toUpperCase()} You ✂️ ${userInput.toUpperCase()}`;
     } else if (computer == PAPER && userInput == SCISSOR) {
       totalgamePlayed++;
       losseS++;
-      myOutputValue = `You lose! <br> Computer 🗒 Reverse ${computer.toUpperCase()} You ✂️ Reverse ${userInput.toUpperCase()}`;
+      myOutputValue = `You lose! <br> Computer 🗒 ${computer.toUpperCase()} You ✂️ ${userInput.toUpperCase()}`;
     } else {
       return "Type any one (Paper or Scissor, Stone)";
     }
-    return `<b>${gamemode} <br>${myOutputValue} <br> Game Played: ${totalgamePlayed} *Wins: ${winS} *Tie: ${tie} *Loss: ${losseS}<br> Press 'r' for Actual SPS game and 'p' for Prank mode`;
+    return `<b>${PlayerName},${gamemode} <br>${myOutputValue} <br> Game Played: ${totalgamePlayed} *Wins: ${winS} *Tie: ${tie} *Loss: ${losseS} *Win Rate: ${WinRatee.toFixed(2)}%<br> Press 'r' for Actual SPS game and 'p' for Prank mode`;
   }
 };
